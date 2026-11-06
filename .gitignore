@@ -2,3 +2,99 @@
 Thumbs.db
 .vscode/
 node_modules/
+
+git checkout -b feature/terminal-basics
+
+
+pwd
+ls -la
+
+
+cp index.html index.html.bak
+
+
+mkdir -p css
+mv styles/style.css css/style.css
+rmdir styles
+
+
+
+git diff
+
+
+git add index.html css/style.css
+git diff --staged
+git status
+
+git commit -m "Переместил style.css в папку css и обновил путь в index.html"
+
+
+git add index.html
+git commit --amend -m "Переместил style.css в папку css и обновил путь в index.html"
+git log --oneline
+
+touch temp.txt
+git add temp.txt
+git status
+git reset HEAD temp.txt
+git status
+rm temp.txt
+
+cat > README.md << 'EOF'
+
+
+
+
+
+- `index.html` — страница проекта;
+- `css/style.css` — стили (перенесены из папки styles).
+
+
+
+
+
+
+git add README.md
+git commit -m "Добавил README с описанием структуры проекта и выполненных шагов"
+git log --oneline
+
+git push -u origin feature/terminal-basics
+
+git checkout main
+git pull
+
+
+rm -f index.html.bak
+cat > .gitignore << 'EOF'
+.DS_Store
+Thumbs.db
+.vscode/
+node_modules/
+EOF
+
+git add .gitignore
+git commit -m "Добавил .gitignore"
+git push
+
+
+ls
+cat index.html          # href должен быть ./css/style.css
+git status              # nothing to commit, working tree clean
+git log --oneline
+
+
+git checkout -b feature/readme-note
+
+cat >> README.md << 'EOF'
+
+
+
+
+EOF
+
+git add README.md
+git commit -m "Добавил в README раздел с заметками по дополнительному заданию"
+
+git checkout main
+git diff feature/terminal-basics feature/readme-note
+
